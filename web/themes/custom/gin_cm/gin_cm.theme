@@ -1,0 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+foreach (glob(\Drupal::service('extension.list.theme')->getPath('gin_cm') . '/includes/*.theme') as $file) {
+  include $file;
+}
+
