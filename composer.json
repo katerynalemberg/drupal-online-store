@@ -17,20 +17,25 @@
     "require": {
         "composer/installers": "^2.0",
         "cweagans/composer-patches": "^1.7",
+        "drupal/admin_toolbar": "^3.6",
         "drupal/coffee": "^2.0",
         "drupal/commerce": "^3.0@beta",
         "drupal/commerce_paypal": "^1.8",
         "drupal/commerce_product_tax": "^1.2",
         "drupal/commerce_shipping": "^2.11",
         "drupal/commerce_tax": "^3.0",
-        "drupal/core-composer-scaffold": "^11.0",
-        "drupal/core-project-message": "^11.0",
-        "drupal/core-recommended": "^11.0",
+        "drupal/core-composer-scaffold": "11.2.8",
+        "drupal/core-project-message": "11.2.8",
+        "drupal/core-recommended": "11.2.8",
+        "drupal/entity_print": "^2.18",
+        "drupal/flag": "^5.0",
         "drupal/gin": "^3.0@RC",
+        "drupal/gin_login": "^2.1",
         "drupal/kart": "^1.0",
+        "drupal/pathauto": "^1.14",
         "drupal/physical": "^1.5",
         "drupal/quiz": "^7.0",
-        "platformsh/config-reader": "^3.0"
+        "drupal/select2": "^2.0"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -40,13 +45,14 @@
     "config": {
         "allow-plugins": {
             "composer/installers": true,
+            "cweagans/composer-patches": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
             "php-http/discovery": true,
+            "phpro/grumphp": true,
             "phpstan/extension-installer": true,
-            "tbachert/spi": true,
-            "cweagans/composer-patches": true
+            "tbachert/spi": true
         },
         "sort-packages": true
     },
@@ -54,11 +60,6 @@
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"
-            }
-        },
-        "patches": {
-            "drupal/commerce": {
-                "Unable to delete profile.tax_number & uninstall commerce_tax module": "https://www.drupal.org/files/issues/2020-06-07/unable-to-uninstall-commerce-tax-3118588-5.patch"
             }
         },
         "installer-paths": {
@@ -115,6 +116,9 @@
     "require-dev": {
         "drupal/coder": "^8.3",
         "drupal/core-dev": "^11.0",
-        "drush/drush": "^13.3"
+        "drush/drush": "^13.3",
+        "mglaman/drupal-check": "^1.5",
+        "phpro/grumphp": "^2.17",
+        "phpstan/phpstan-deprecation-rules": "^1.2"
     }
 }

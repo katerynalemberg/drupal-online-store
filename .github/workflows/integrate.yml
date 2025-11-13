@@ -1,0 +1,26 @@
+name: Integrate
+
+on: pull_request
+
+jobs:
+  composer:
+    name: Composer install
+    uses: lembergsolutions/automation/.github/workflows/php-composer.yml@3.x
+    with:
+      php_version: ${{ vars.PHP_VERSION }}
+      composer_version: ${{ vars.COMPOSER_VERSION }}
+
+  phpcs:
+    name: PHP Code Sniffer
+    uses: lembergsolutions/automation/.github/workflows/php-code-sniffer.yml@3.x
+    with:
+      php_version: ${{ vars.PHP_VERSION }}
+      composer_version: ${{ vars.COMPOSER_VERSION }}
+
+  phpcstan:
+    name: PHP Code Stan
+    uses: lembergsolutions/automation/.github/workflows/php-static-analysis.yml@3.x
+    with:
+      php_version: ${{ vars.PHP_VERSION }}
+      composer_version: ${{ vars.COMPOSER_VERSION }}
+
