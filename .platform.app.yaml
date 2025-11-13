@@ -1,48 +1,120 @@
+# This file describes an application. You can have multiple applications
+# in the same project.
+#
+# See https://docs.platform.sh/configuration/app.html
+
 # The name of this app. Must be unique within a project.
-name: app
+# Must be lowercase alphanumeric characters. Changing the name destroys data associated with the app.
+name: 'turbo-drupal'
 
-# The runtime the application uses. The 'type' key defines the base container
-# image that will be used to run the application. There is a separate base
-# container image for each primary language for the application,
-# in multiple versions. Check the PHP documentation
-# (https://docs.platform.sh/languages/php.html#supported-versions)
-# to find the supported versions for the 'php' type.
-type: 'php:8.4'
+# The runtime the application uses.
+type: 'php:8.3'
 
-# The following block defines a single writable directory, 'web/uploads'
-# The 'source' specifies where the writable mount is. The 'local' source
-# indicates that the mount point will point to a local directory on the
-# application container. The 'source_path' specifies the subdirectory
-# from within the source that the mount should point at.
-mounts:
-  'web/uploads':
-    source: local
-    source_path: uploads
+dependencies:
+  php:
+    composer/composer: '^2.1'
+    drush/drush: '^12'
+  nodejs:
+    n: "*"
 
-# The size of the persistent disk of the application (in MB).
-disk: 2048
+runtime:
+  # Enable the redis extension so Drupal can communicate with the Redis cache.
+  extensions:
+    - redis
+    - sodium
+    - apcu
+    - blackfire
+    - imagick
 
+# The relationships of the application with services or other applications.
+#
+# The left-hand side is the name of the relationship as it will be exposed
+# to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
+# side is in the form `<service name>:<endpoint name>`.
 relationships:
   database: 'db:mysql'
   redis: 'cache:redis'
 
+# The size of the persistent disk of the application (in MB).
+disk: 2048
+
+# The 'mounts' describe writable, persistent filesystem mounts in the application.
+mounts:
+  # The default Drupal files directory.
+  '/web/sites/default/files':
+    source: local
+    source_path: 'files'
+  # Drupal gets its own dedicated tmp directory. The settings.platformsh.php
+  # file will automatically configure Drupal to use this directory.
+  '/tmp':
+    source: local
+    source_path: 'tmp'
+  # Private file uploads are stored outside the web root. The settings.platformsh.php
+  # file will automatically configure Drupal to use this directory.
+  '/private':
+    source: local
+    source_path: 'private'
+  # Drush needs a scratch space for its own caches.
+  '/.drush':
+    source: local
+    source_path: 'drush'
+  # Drush will try to save backups to this directory, so it must be
+  # writeable even though you will almost never need to use it.
+  '/drush-backups':
+    source: local
+    source_path: 'drush-backups'
+  # Drupal Console will try to save backups to this directory, so it must be
+  # writeable even though you will almost never need to use it.
+  '/.console':
+    source: local
+    source_path: 'console'
+
+# Configuration of the build of this application.
+build:
+  flavor: composer
+
+# Platformsh variables.
+variables:
+  env:
+    N_PREFIX: /app/.global
+
+# The hooks executed at various points in the lifecycle of the application.
+hooks:
+  # The build hook runs after Composer to finish preparing up your code.
+  # No services are available but the disk is writeable.
+  build: |
+    # Exit the hook on any failure
+    set -e
+
+    if [ "$PLATFORM_ENVIRONMENT_TYPE" != production ]; then
+      curl -fsS https://platform.sh/cli/installer | php
+
+      # Install the version specified in the .nvmrc file
+      # n auto
+
+      # Reset the location hash to recognize the newly installed version
+      # hash -r
+
+      # npm install
+      # npm run production
+    fi
+
+  # The deploy hook runs after your application has been deployed and started.
+  # Code cannot be modified at this point but the database is available.
+  # The site is not accepting requests while this script runs so keep it
+  # fast.
+  deploy: |
+    set -e
+    php ./drush/platformsh_generate_drush_yml.php
+    # if drupal is installed, will call the following drush commands:
+    #   - `cache-rebuild`
+    #   - `updatedb`
+    #   - and if config files are present, `config-import`
+    cd web
+    bash $PLATFORM_APP_DIR/drush/platformsh_deploy_drupal.sh
+
+# The configuration of app when it is exposed to the web.
 web:
-  # Commands are run once after deployment to start the application process.
-  # More information: https://docs.platform.sh/create-apps/app-reference.html#web-commands
-  # commands:
-  # The command to launch your app. If it terminates, it’s restarted immediately.
-  #   You can use the $PORT or the $SOCKET environment variable depending on the socket family of your upstream
-  #   PHP applications run PHP-fpm by default
-  #   Read about alternative commands here: https://docs.platform.sh/languages/php.html#alternate-start-commands
-  #   start: echo 'Put your start command here'
-  # You can listen to a UNIX socket (unix) or a TCP port (tcp, default).
-  # For PHP, the defaults are configured for PHP-FPM and shouldn't need adjustment.
-  # Whether your app should speak to the webserver via TCP or Unix socket. Defaults to tcp
-  # More information: https://docs.platform.sh/create-apps/app-reference.html#where-to-listen
-  # upstream:
-  #  socket_family: unix
-  # Each key in locations is a path on your site with a leading /.
-  # More information: https://docs.platform.sh/create-apps/app-reference.html#locations
   locations:
     # All requests not otherwise specified follow these rules.
     '/':
@@ -68,7 +140,7 @@ web:
       # Rules for specific URI patterns.
       rules:
         # Allow access to common static files.
-        '\.(avif|webp|jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
+        '\.(jpe?g|png|gif|svgz?|css|js|map|ico|bmp|eot|woff2?|otf|ttf)$':
           allow: true
         '^/robots\.txt$':
           allow: true
@@ -96,3 +168,18 @@ web:
         # Provide a longer TTL (2 weeks) for aggregated CSS and JS files.
         '^/sites/default/files/(css|js)':
           expires: 2w
+
+# Cron jobs.
+crons:
+  # Run Drupal's cron tasks every 19 minutes.
+  drupal:
+    spec: '*/19 * * * *'
+    commands:
+      start: 'cd web ; drush core-cron'
+
+# Auto update source.
+source:
+  operations:
+    auto-update:
+      command: |
+        curl -fsS https://raw.githubusercontent.com/platformsh/source-operations/main/setup.sh | { bash /dev/fd/3 sop-autoupdate; } 3<&0
