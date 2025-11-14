@@ -1,0 +1,9 @@
+uuid: ae192e5a-e410-410b-83e5-fcc77597595b
+langcode: en
+status: true
+dependencies: {  }
+name: Category
+vid: category
+description: 'Books categories'
+weight: 0
+new_revision: false

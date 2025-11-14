@@ -1,0 +1,114 @@
+uuid: 12185c6b-b49d-419c-b7d6-1fbe8cc20d97
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.online_course
+    - field.field.commerce_product.online_course.field_area
+    - field.field.commerce_product.online_course.field_certificate_description
+    - field.field.commerce_product.online_course.field_certificate_title
+    - field.field.commerce_product.online_course.field_description
+    - field.field.commerce_product.online_course.field_image
+    - field.field.commerce_product.online_course.field_quiz
+    - field.field.commerce_product.online_course.field_supplemental_files
+    - field.field.commerce_product.online_course.field_tag
+    - image.style.media_library
+  module:
+    - commerce_product
+    - entity_print
+    - image
+    - options
+    - text
+third_party_settings:
+  entity_print:
+    pdf_label: 'Download certificate'
+id: commerce_product.online_course.default
+targetEntityType: commerce_product
+bundle: online_course
+mode: default
+content:
+  entity_print_view_pdf:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_area:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: media_library
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_quiz:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_supplemental_files:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_tag:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  flag_activate_course:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  variations:
+    type: commerce_add_to_cart
+    label: hidden
+    settings:
+      combine: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
+hidden:
+  created: true
+  entity_print_view_epub: true
+  entity_print_view_word_docx: true
+  field_certificate_description: true
+  field_certificate_title: true
+  langcode: true
+  stores: true
+  uid: true

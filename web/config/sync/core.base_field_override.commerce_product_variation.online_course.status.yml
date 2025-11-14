@@ -1,0 +1,22 @@
+uuid: a71ac7d1-efaf-4e62-90ef-6138e02b4de1
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.online_course
+id: commerce_product_variation.online_course.status
+field_name: status
+entity_type: commerce_product_variation
+bundle: online_course
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

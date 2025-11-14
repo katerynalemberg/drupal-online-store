@@ -1,0 +1,30 @@
+uuid: 4d74df6d-c78c-4868-a2d6-50193c430665
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: jtTLOTiHak8yLIqoi05YnsT3gMDeWlwOz32ZNo4vNfs
+id: question
+label: 'After the question'
+description: 'Show feedback after the question'
+component:
+  context_definitions:
+    quiz_result:
+      type: 'entity:quiz_result'
+      label: 'Quiz result'
+      description: 'Quiz result to evaluate feedback'
+  provided_context_definitions: {  }
+  expression:
+    id: rules_and
+    weight: 0
+    conditions:
+      -
+        id: rules_condition
+        weight: 0
+        condition_id: rules_data_is_empty
+        negate: false
+        context_values: {  }
+        context_mapping:
+          data: quiz_result.time_end
+        context_processors: {  }
+        provides_mapping: {  }

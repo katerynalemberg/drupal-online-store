@@ -32,7 +32,7 @@ class PriceResolver implements PriceResolverInterface {
         ->loadByProperties(['uid' => $user->id(), 'state' => 'completed']);
 
       foreach ($orders as $order) {
-        foreach ($order->getItems() as $order_item) {
+        foreach ($order->toArray() as $order_item) {
           if ($this->isMembershipProduct($order_item)) {
             return $entity->getPrice()->multiply('0.90');
           }
@@ -50,7 +50,7 @@ class PriceResolver implements PriceResolverInterface {
     $purchasable_entity = $order_item->getPurchasedEntity();
     if ($purchasable_entity) {
       return $purchasable_entity->getEntityTypeId() === 'commerce_product_variation'
-        && $purchasable_entity->getProduct()->bundle() === 'membership';
+        && $purchasable_entity->bundle() === 'membership';
     }
     return FALSE;
   }

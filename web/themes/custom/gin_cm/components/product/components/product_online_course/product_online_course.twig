@@ -1,0 +1,81 @@
+<div {{ attributes }}>
+  {% if view_mode == 'full' %}
+    {% if product.flag_activate_course and is_purchased %}
+      <div class="flag">
+        {{ product.flag_activate_course }}
+      </div>
+    {% endif %}
+
+    {# Main image #}
+    {% if product.field_image %}
+      <div class="product-image">
+        {{ product.field_image }}
+      </div>
+    {% endif %}
+
+    {# Area/Category #}
+    {% if product.field_area %}
+      <div class="product-area">
+        {{ product.field_area }}
+      </div>
+    {% endif %}
+
+    {% if product.field_tag %}
+      <div class="product-tags">
+        {{ product.field_tag }}
+      </div>
+    {% endif %}
+
+    {# Description #}
+    {% if product.field_description %}
+      <div class="product-description">
+        {{ product.field_description }}
+      </div>
+    {% endif %}
+
+    {# Member price #}
+    {% if product.field_member_price %}
+      <div class="product-member-price">
+        {{ product.field_member_price }}
+      </div>
+    {% endif %}
+
+    {% if is_purchased %}
+
+      {% if product.field_quiz and quiz_link and is_activated %}
+        <div class="product-quiz">
+          <a href="{{ quiz_link }}" class="quiz">
+            {{ 'Take a quiz'|t }}
+          </a>
+        </div>
+      {% endif %}
+
+      {# Supplemental files #}
+      {% if supplements and is_activated %}
+        <div class="product-supplemental-files">
+          <h4>{{ 'Table of materials'|t }}</h4>
+          {{ product.field_supplemental_files }}
+        </div>
+      {% endif %}
+
+      {# Certificate link #}
+      {% if product.entity_print_view_pdf and quiz_passed %}
+        <div class="product-certificate">
+          {{ product.entity_print_view_pdf }}
+        </div>
+      {% endif %}
+
+    {% endif %}
+
+    {% if product.variations and not is_purchased %}
+      <div class="product-variations">
+        {{ product.variations }}
+      </div>
+    {% endif %}
+
+  {% else %}
+    {{ product }}
+  {% endif %}
+</div>
+
+

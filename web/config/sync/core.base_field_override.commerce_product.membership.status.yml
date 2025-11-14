@@ -1,0 +1,22 @@
+uuid: efe8bec9-973c-494c-a6db-149d5633a20f
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.membership
+id: commerce_product.membership.status
+field_name: status
+entity_type: commerce_product
+bundle: membership
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

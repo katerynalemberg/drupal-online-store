@@ -1,0 +1,28 @@
+uuid: 5bedf60a-da44-44cc-bfd3-0a252cb5639b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.quiz_question.short_answer_evaluation
+    - quiz.question.type.short_answer
+  module:
+    - options
+  enforced:
+    module:
+      - quiz_short_answer
+_core:
+  default_config_hash: PHCgURbH3AZIbnF99OeqkHcc2bTKHD4aNe6TqIIe3yY
+id: quiz_question.short_answer.short_answer_evaluation
+field_name: short_answer_evaluation
+entity_type: quiz_question
+bundle: short_answer
+label: 'Evaluation method'
+description: 'Choose how the answer shall be evaluated.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

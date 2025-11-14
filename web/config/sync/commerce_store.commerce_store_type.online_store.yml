@@ -1,0 +1,9 @@
+uuid: 48138786-a3e6-4352-abfa-5e089325d106
+langcode: en
+status: true
+dependencies: {  }
+id: online_store
+label: 'Online store'
+traits: {  }
+locked: false
+description: ''

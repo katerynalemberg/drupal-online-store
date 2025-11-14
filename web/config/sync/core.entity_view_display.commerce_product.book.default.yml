@@ -1,0 +1,89 @@
+uuid: e74e222b-6064-4c37-adda-f0f3bd3da58c
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.book
+    - field.field.commerce_product.book.field_author
+    - field.field.commerce_product.book.field_category
+    - field.field.commerce_product.book.field_description
+    - field.field.commerce_product.book.field_image
+    - field.field.commerce_product.book.field_pages
+    - image.style.media_library
+  module:
+    - commerce_product
+    - image
+    - text
+id: commerce_product.book.default
+targetEntityType: commerce_product
+bundle: book
+mode: default
+content:
+  field_author:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_category:
+    type: entity_reference_entity_view
+    label: inline
+    settings:
+      view_mode: default
+      link: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: media_library
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_pages:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  variations:
+    type: commerce_add_to_cart
+    label: hidden
+    settings:
+      combine: true
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  created: true
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  langcode: true
+  stores: true
+  uid: true

@@ -1,0 +1,26 @@
+uuid: 1b57b7f1-7fe2-4d33-a314-eb36145d5d2e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.quiz_question.truefalse_correct
+    - quiz.question.type.truefalse
+  module:
+    - options
+  enforced:
+    module:
+      - quiz_truefalse
+_core:
+  default_config_hash: Vni4zcKwe5AjMZcQgEv_pCuSQ9HfkJl8f_qkOuAJVWY
+id: quiz_question.truefalse.truefalse_correct
+field_name: truefalse_correct
+entity_type: quiz_question
+bundle: truefalse
+label: 'Correct answer'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

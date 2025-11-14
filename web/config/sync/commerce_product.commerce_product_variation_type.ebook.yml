@@ -1,0 +1,10 @@
+uuid: 930a6a45-bff3-4e8f-bf07-638958cc7861
+langcode: en-gb
+status: true
+dependencies: {  }
+id: ebook
+label: Ebook
+traits: {  }
+locked: false
+orderItemType: default
+generateTitle: false

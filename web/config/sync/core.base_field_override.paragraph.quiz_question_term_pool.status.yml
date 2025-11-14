@@ -1,0 +1,22 @@
+uuid: 7031d232-b22d-4a40-8786-5016fad6b7ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.quiz_question_term_pool
+id: paragraph.quiz_question_term_pool.status
+field_name: status
+entity_type: paragraph
+bundle: quiz_question_term_pool
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,28 @@
+uuid: b7ddd92b-6e7a-432e-ba78-86d5f455d6e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.quiz_result_answer.multichoice_answer
+    - quiz.result.answer.type.multichoice
+  enforced:
+    module:
+      - quiz_multichoice
+_core:
+  default_config_hash: iAmrESnokMvRdigohF3ddrDWDQXHiiLAFAfskyiYu6s
+id: quiz_result_answer.multichoice.multichoice_answer
+field_name: multichoice_answer
+entity_type: quiz_result_answer
+bundle: multichoice
+label: 'User answer'
+description: 'The answer that the user chose.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

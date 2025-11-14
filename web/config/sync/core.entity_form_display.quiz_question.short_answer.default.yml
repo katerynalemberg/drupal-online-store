@@ -1,0 +1,59 @@
+uuid: 25f8b9a1-9e29-425e-9400-be317fa84e42
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.quiz_question.short_answer.short_answer_correct
+    - field.field.quiz_question.short_answer.short_answer_evaluation
+    - quiz.question.type.short_answer
+  module:
+    - text
+  enforced:
+    module:
+      - quiz_short_answer
+_core:
+  default_config_hash: 9TwOMfNojMBP6U_FD2l83G6DcsAk1PaKQDH5_QVK5H4
+id: quiz_question.short_answer.default
+targetEntityType: quiz_question
+bundle: short_answer
+mode: default
+content:
+  body:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  feedback:
+    type: text_textarea
+    weight: 26
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  short_answer_correct:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  short_answer_evaluation:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

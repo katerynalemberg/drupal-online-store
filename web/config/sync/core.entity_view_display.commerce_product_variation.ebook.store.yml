@@ -1,0 +1,27 @@
+uuid: 35afdf03-547b-4fca-92fc-b7a2ab40cacc
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.ebook
+    - core.entity_view_mode.commerce_product_variation.store
+    - field.field.commerce_product_variation.ebook.field_file
+    - field.field.commerce_product_variation.ebook.field_member_price
+    - field.field.commerce_product_variation.ebook.field_tax_rate
+id: commerce_product_variation.ebook.store
+targetEntityType: commerce_product_variation
+bundle: ebook
+mode: store
+content: {  }
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  field_file: true
+  field_member_price: true
+  field_tax_rate: true
+  list_price: true
+  price: true
+  product_id: true
+  sku: true
+  title: true

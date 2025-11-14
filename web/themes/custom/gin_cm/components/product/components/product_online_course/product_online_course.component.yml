@@ -1,0 +1,20 @@
+'$schema': 'https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json'
+name: product-online-course
+status: stable
+props:
+  type: object
+  properties:
+    product:
+      type: array
+      title: product
+    quiz_link:
+      type: string
+      title: Quiz Link
+    supplements:
+      type: object
+      title: Supplements
+    view_mode:
+      type: string
+      title: View mode
+
+
