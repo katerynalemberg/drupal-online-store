@@ -1,0 +1,24 @@
+uuid: c73b6adf-5b53-410d-8f30-7c80e88febf6
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: product_pattren
+label: 'Product pattren'
+type: 'canonical_entities:commerce_product'
+pattern: 'product/[commerce_product:type]/[commerce_product:title]'
+selection_criteria:
+  3cff1290-ecb7-45a8-8b3d-c68517fd3c75:
+    id: 'entity_bundle:commerce_product'
+    negate: false
+    uuid: 3cff1290-ecb7-45a8-8b3d-c68517fd3c75
+    context_mapping:
+      commerce_product: commerce_product
+    bundles:
+      book: book
+      membership: membership
+      online_course: online_course
+selection_logic: and
+weight: 10
+relationships: {  }

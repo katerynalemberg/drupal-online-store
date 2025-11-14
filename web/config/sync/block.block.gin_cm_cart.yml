@@ -1,0 +1,22 @@
+uuid: a21466de-521f-4853-8fec-1cc48827a960
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_cart
+  theme:
+    - gin_cm
+id: gin_cm_cart
+theme: gin_cm
+region: pre_content
+weight: 0
+provider: null
+plugin: commerce_cart
+settings:
+  id: commerce_cart
+  label: Cart
+  label_display: '0'
+  provider: commerce_cart
+  dropdown: true
+  show_if_empty: true
+visibility: {  }

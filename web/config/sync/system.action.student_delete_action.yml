@@ -1,0 +1,13 @@
+uuid: 10cca70e-613f-4632-a699-926a9eec54f4
+langcode: en
+status: true
+dependencies:
+  module:
+    - student_manager
+_core:
+  default_config_hash: wMOLYBprCUbLWYGbSPsrkwbcCVQsIg2fbfvnWFUuSG8
+id: student_delete_action
+label: 'Delete students'
+type: student
+plugin: 'entity:delete_action:student'
+configuration: {  }

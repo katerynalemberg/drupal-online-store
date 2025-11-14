@@ -1,0 +1,15 @@
+uuid: 22f0ccdd-56ef-4d85-a914-6ff6d2250d9f
+langcode: en
+status: true
+dependencies:
+  config:
+    - flag.flag.activate_course
+  module:
+    - flag
+id: flag_action.activate_course_unflag
+label: Discativate
+type: commerce_product
+plugin: 'flag_action:activate_course_unflag'
+configuration:
+  flag_id: activate_course
+  flag_action: unflag
