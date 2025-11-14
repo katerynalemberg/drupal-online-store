@@ -56,6 +56,14 @@
         },
         "sort-packages": true
     },
+    "scripts": {
+        "build": [
+            "composer install",
+            "drush cr",
+            "drush updb -y",
+            "drush cim -y"
+        ]
+    },
     "extra": {
         "drupal-scaffold": {
             "locations": {
