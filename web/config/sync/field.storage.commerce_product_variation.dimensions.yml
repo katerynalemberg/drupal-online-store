@@ -1,0 +1,19 @@
+uuid: 639ced20-5cfc-4481-8049-859669f35329
+langcode: en-gb
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - physical
+id: commerce_product_variation.dimensions
+field_name: dimensions
+entity_type: commerce_product_variation
+type: physical_dimensions
+settings: {  }
+module: physical
+locked: true
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

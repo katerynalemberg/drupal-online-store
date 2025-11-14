@@ -1,0 +1,19 @@
+uuid: 818a75fc-2cbb-4dfc-960d-3aeaa71881b9
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.book
+    - field.storage.commerce_product.field_author
+id: commerce_product.book.field_author
+field_name: field_author
+entity_type: commerce_product
+bundle: book
+label: Author(s)
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

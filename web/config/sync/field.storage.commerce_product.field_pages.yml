@@ -1,0 +1,20 @@
+uuid: 82879c21-b918-440d-b165-d2e7151f4c2e
+langcode: en-gb
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product.field_pages
+field_name: field_pages
+entity_type: commerce_product
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

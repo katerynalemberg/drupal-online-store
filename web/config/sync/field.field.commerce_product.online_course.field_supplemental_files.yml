@@ -1,0 +1,29 @@
+uuid: 7b0da465-bf65-47b8-93b8-dc96175fcd90
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.online_course
+    - field.storage.commerce_product.field_supplemental_files
+    - media.type.document
+id: commerce_product.online_course.field_supplemental_files
+field_name: field_supplemental_files
+entity_type: commerce_product
+bundle: online_course
+label: 'Supplemental files'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      document: document
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

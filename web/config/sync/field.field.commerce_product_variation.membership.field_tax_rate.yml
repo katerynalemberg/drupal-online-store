@@ -1,0 +1,24 @@
+uuid: 28b4865a-fa4d-46eb-92c0-1fd8f2c0c10f
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.membership
+    - field.storage.commerce_product_variation.field_tax_rate
+  module:
+    - commerce_product_tax
+id: commerce_product_variation.membership.field_tax_rate
+field_name: field_tax_rate
+entity_type: commerce_product_variation
+bundle: membership
+label: 'Tax rate'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_zones:
+    default: default
+  tax_type: invoice
+field_type: commerce_tax_rate

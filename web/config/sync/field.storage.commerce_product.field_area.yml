@@ -1,0 +1,27 @@
+uuid: 3b5c43ff-4dc5-4d75-b278-a1491a641ee2
+langcode: en-gb
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - options
+id: commerce_product.field_area
+field_name: field_area
+entity_type: commerce_product
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: medical
+      label: Medical
+    -
+      value: non_medical
+      label: Non-medical
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

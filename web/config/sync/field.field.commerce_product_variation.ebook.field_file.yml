@@ -1,0 +1,27 @@
+uuid: 4183ada1-e40d-4569-bee8-bb42421940ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.ebook
+    - field.storage.commerce_product_variation.field_file
+  module:
+    - file
+id: commerce_product_variation.ebook.field_file
+field_name: field_file
+entity_type: commerce_product_variation
+bundle: ebook
+label: File
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'pdf epub mobi azw3 fb2 txt doc docx'
+  max_filesize: ''
+  description_field: false
+field_type: file
