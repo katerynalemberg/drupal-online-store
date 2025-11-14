@@ -1,0 +1,95 @@
+uuid: ea872349-e8db-44ec-a516-fc41e29c9638
+langcode: en-gb
+status: true
+dependencies:
+  module:
+    - commerce_payment
+    - commerce_paypal
+    - commerce_promotion
+    - commerce_shipping
+_core:
+  default_config_hash: lNJaUt8IZZTPVkYvR4MvoYxYJCbPx10KeynMhXpYV24
+label: 'PayPal Checkout'
+id: paypal_checkout
+plugin: paypal_checkout
+configuration:
+  display_checkout_progress: true
+  display_checkout_progress_breadcrumb_links: false
+  guest_order_assign: false
+  guest_new_account: false
+  guest_new_account_notify: false
+  panes:
+    review:
+      step: review
+      display_label: null
+      wrapper_element: null
+      weight: '0'
+    paypal_checkout_payment_process:
+      capture: true
+      step: payment
+      display_label: null
+      wrapper_element: container
+      weight: '1'
+    completion_message:
+      message:
+        value: "Your order number is [commerce_order:order_number].\r\nYou can view your order on your account page when logged in."
+        format: plain_text
+      step: complete
+      display_label: null
+      wrapper_element: null
+      weight: '2'
+    order_summary:
+      view: ''
+      step: _sidebar
+      display_label: null
+      wrapper_element: container
+      weight: '4'
+    completion_register:
+      step: _disabled
+      display_label: null
+      wrapper_element: null
+      weight: '6'
+    login:
+      allow_guest_checkout: true
+      allow_registration: false
+      registration_form_mode: register
+      step: _disabled
+      display_label: null
+      wrapper_element: null
+      weight: '8'
+    contact_information:
+      double_entry: false
+      step: order_information
+      display_label: null
+      wrapper_element: fieldset
+      weight: '10'
+    customer_comments:
+      step: _disabled
+      display_label: null
+      wrapper_element: fieldset
+      weight: '10'
+    payment_information:
+      require_payment_method: false
+      step: payment
+      display_label: null
+      wrapper_element: fieldset
+      weight: '10'
+    payment_process:
+      capture: true
+      step: _disabled
+      display_label: null
+      wrapper_element: container
+      weight: '10'
+    coupon_redemption:
+      allow_multiple: false
+      step: _sidebar
+      display_label: null
+      wrapper_element: container
+      weight: '10'
+    shipping_information:
+      auto_recalculate: true
+      require_shipping_profile: true
+      step: order_information
+      display_label: null
+      wrapper_element: fieldset
+      weight: '10'

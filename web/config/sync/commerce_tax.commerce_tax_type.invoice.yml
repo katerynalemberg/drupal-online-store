@@ -1,0 +1,19 @@
+uuid: bd8429d7-838b-4402-b483-10f3c95c16e4
+langcode: en-gb
+status: true
+dependencies: {  }
+id: invoice
+label: Invoice
+plugin: custom
+configuration:
+  display_inclusive: true
+  display_label: tax
+  round: true
+  rates:
+    -
+      id: a308b67b-ef64-4d65-b3c6-f28da5c6e3d4
+      label: Standard
+      percentage: '0.2'
+  territories: {  }
+conditions: {  }
+conditionOperator: AND
