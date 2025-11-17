@@ -44,6 +44,7 @@ module:
   file: 0
   file_download: 0
   filter: 0
+  flag: 0
   gin_login: 0
   gin_toolbar: 0
   help: 0
@@ -84,6 +85,7 @@ module:
   user: 0
   utils: 0
   views_bulk_operations: 0
+  views_custom_permissions: 0
   views_ui: 0
   webform: 0
   pathauto: 1

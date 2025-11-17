@@ -1,0 +1,74 @@
+<?php
+
+/**
+ * @file
+ * field.theme
+ */
+
+use Drupal\paragraphs\Entity\Paragraph;
+
+/**
+ * Implements hook_preprocess_views_view_field().
+ */
+function gin_cm_preprocess_flag(
+  array &$variables,
+): void {
+  $entity = $variables['flaggable'] ?? NULL;
+  $storage = \Drupal::entityTypeManager()
+    ->getStorage('paragraph');
+
+  if (is_null($entity)) {
+    return;
+  }
+  $variation = $entity->getDefaultVariation();
+  $product_id = $variation->getProductId();
+  $now = \Drupal::time()->getCurrentTime();
+  $course = $storage
+    ->loadByProperties([
+      'type' => 'activated_course',
+      'field_course' => $product_id,
+      'field_user' => \Drupal::currentUser()->id(),
+    ]);
+  $course = reset($course);
+
+  if (!($course instanceof Paragraph)) {
+    return;
+  }
+
+  $duration = strtotime($course->get('field_duration')->value);
+
+  if ($variables['view_mode'] !== 'teaser') {
+    return;
+  }
+
+  // When course is not activated.
+  if ($variables['action'] === 'flag') {
+    $variables['title']['#markup'] = t('Not activated');
+  }
+  $quiz_result = \Drupal::service('utils.quiz_helper')->isQuizPassed($entity);
+
+  // When no quiz assigned or not started yet.
+  if (empty($quiz_result)) {
+    return;
+  }
+
+  // When course is activated and quiz is passed.
+  elseif ($quiz_result['passed']) {
+    $variables['title']['#markup'] = t('Completed');
+  }
+
+  // When course is activated, quiz is not passed and duration is not up.
+  elseif ($variables['action'] === 'unflag' &&
+          $duration
+  ) {
+    $variables['title']['#markup'] = t('In progress');
+  }
+
+  // When time is up and course is not completed.
+  elseif ($duration &&
+      $duration <= $now &&
+      $variables['action'] === 'flag'
+  ) {
+    $variables['title']['#markup'] = t('Incomplete');
+  }
+}

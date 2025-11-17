@@ -1,0 +1,6 @@
+vcp_table:
+  -
+    title: Customer
+    callback: accessCallback_CustomerRole
+    weight: '-10'
+    remove: Remove

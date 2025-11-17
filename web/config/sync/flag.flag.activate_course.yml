@@ -1,0 +1,30 @@
+uuid: fb2f17bf-df3b-4175-92c4-f75323f012de
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: activate_course
+label: 'Activate course'
+bundles:
+  - online_course
+entity_type: commerce_product
+global: false
+flag_short: Activate
+flag_long: ''
+flag_message: ''
+unflag_short: Discativate
+unflag_long: ''
+unflag_message: ''
+unflag_denied_text: ''
+weight: 0
+flag_type: 'entity:commerce_product'
+link_type: reload
+flagTypeConfig:
+  show_in_links: {  }
+  show_as_field: true
+  show_on_form: false
+  show_contextual_link: false
+  extra_permissions:
+    owner: '0'
+linkTypeConfig: {  }

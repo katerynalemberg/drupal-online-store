@@ -6,8 +6,34 @@
  */
 
 use Drupal\Core\Access\AccessResult;
+use Drupal\user\UserInterface;
 use Drupal\webform\WebformSubmissionInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/**
+ * Custom callback to access 'view.purchased_courses.purchased_courses'.
+ */
+function utils_access_callback_customer_role() {
+  $access = FALSE;
+  $user = \Drupal::routeMatch()->getParameter('user');
+  $current_user = \Drupal::currentUser();
+
+  if ($current_user->hasPermission('access toolbar')) {
+    return AccessResult::allowed();
+  }
+
+  elseif ($user instanceof UserInterface &&
+      $user->id() === $current_user->id()
+  ) {
+    $access = TRUE;
+  }
+
+  elseif ($user === $current_user->id()) {
+    $access = TRUE;
+  }
+
+  return AccessResult::allowedIf($access);
+}
 
 /**
  * Implements hook_file_access().
