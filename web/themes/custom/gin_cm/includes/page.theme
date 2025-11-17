@@ -1,0 +1,128 @@
+<?php
+
+/**
+ * @file
+ * page.theme
+ */
+
+use Drupal\commerce_product\Entity\ProductInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Session\AccountProxyInterface;
+use Drupal\file\Plugin\Field\FieldType\FileItem;
+use Drupal\flag\FlagInterface;
+use Drupal\user\Entity\User;
+use Drupal\user\UserInterface;
+
+/**
+ * Implements hook_preprocess_block().
+ *
+ * Set variables to display flag message.
+ */
+function gin_cm_preprocess_commerce_product(
+  array &$variables,
+): void {
+  $variables['is_purchased'] = FALSE;
+  $variables['is_activated'] = FALSE;
+  $variables['quiz_passed'] = FALSE;
+  if (!empty($variables['elements']['field_quiz']) &&
+      isset($variables['elements']['field_quiz'][0]['#url'])
+  ) {
+    $variables['quiz_link'] = $variables['elements']['field_quiz'][0]['#url'];
+  }
+  $product_checker = \Drupal::service('utils.product_purchase_checker');
+  $orders = $product_checker?->getOrders();
+
+  if (!empty($orders)) {
+    $is_purchased = $product_checker->checkIfProductPurchased($orders);
+    if ($is_purchased) {
+      $variables['is_purchased'] = $is_purchased;
+
+      // Check if course is activated.
+      $flag = \Drupal::entityTypeManager()
+        ->getStorage('flag')
+        ->load('activate_course');
+      $route_match = \Drupal::routeMatch();
+      $product = $route_match->getParameter('commerce_product');
+      if ($flag instanceof FlagInterface &&
+          $product instanceof EntityInterface
+      ) {
+        $variables['is_activated'] = $flag->isFlagged($product, Drupal::currentUser());
+      }
+
+      // Check if user has passed the quiz.
+      if ($product instanceof ProductInterface &&
+          $product->hasField('field_quiz')
+      ) {
+        $quiz_result = \Drupal::service('utils.quiz_helper')->isQuizPassed($product);
+        $variables['quiz_passed'] = !empty($quiz_result) && $quiz_result['passed'];
+      }
+
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_entity_print().
+ *
+ * Update certificate template for online course.
+ */
+function gin_cm_preprocess_entity_print(
+  array &$variables,
+) {
+  $entity = $variables['content'][0]['#commerce_product'] ?? NULL;
+  $account = $variables['user'];
+  if ($entity instanceof ProductInterface &&
+      $entity->getEntityTypeId() === 'commerce_product'
+  ) {
+    if ($entity->hasField('field_certificate_title')) {
+      $variables['certificate_title'] = $entity->get('field_certificate_title')->value;
+    }
+
+    if ($entity->hasField('field_certificate_description')) {
+      $field = $entity->get('field_certificate_description')->first();
+      if ($field) {
+        $variables['certificate_description'] = [
+          '#type' => 'processed_text',
+          '#text' => $field->getValue()['value'] ?? NULL,
+          '#format' => $field->getValue()['value'] ?? NULL,
+        ];
+      }
+    }
+
+    if ($entity->hasField('field_image')) {
+      $image_field = $entity->get('field_image')->first();
+      if (!($image_field instanceof FileItem)) {
+        return;
+      }
+
+      $variables['image'] = [
+        '#theme' => 'image_style',
+        '#style_name' => 'medium',
+        '#uri' => $image_field->entity->getFileUri(),
+        '#alt' => $image_field->getValue()['alt'],
+      ];
+    }
+
+    // Check if user has passed the quiz.
+    if ($entity->hasField('field_quiz')) {
+      $quiz_result = \Drupal::service('utils.quiz_helper')->isQuizPassed($entity);
+
+      if (!empty($quiz_result) &&
+          $quiz_result['passed']
+      ) {
+        $time = $quiz_result['quiz']->getChangedTime();
+        $variables['date'] = \Drupal::service('date.formatter')
+          ->format($time, 'short');
+      }
+    }
+  }
+
+  if ($account instanceof AccountProxyInterface) {
+    $user = User::load($account->id());
+    if (!($user instanceof UserInterface)) {
+      return;
+    }
+    $variables['user_name'] = $user->get('field_full_name')->value ??
+      $user->getDisplayName();
+  }
+}
