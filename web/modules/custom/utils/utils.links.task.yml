@@ -1,0 +1,5 @@
+utils.product_config_tab:
+  route_name: utils.course_settings
+  base_route: entity.commerce_product.canonical
+  title: Config Form
+  weight: 100
