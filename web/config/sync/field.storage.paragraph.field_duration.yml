@@ -1,0 +1,20 @@
+uuid: 68beb189-cf4d-40f7-94c2-e47136353226
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - paragraphs
+id: paragraph.field_duration
+field_name: field_duration
+entity_type: paragraph
+type: datetime
+settings:
+  datetime_type: datetime
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

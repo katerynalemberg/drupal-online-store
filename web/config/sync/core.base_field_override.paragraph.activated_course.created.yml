@@ -1,0 +1,18 @@
+uuid: 1f63a52d-5477-420a-baf0-e6fc6bd7efdb
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.activated_course
+id: paragraph.activated_course.created
+field_name: created
+entity_type: paragraph
+bundle: activated_course
+label: 'Authored on'
+description: 'The time that the Paragraph was created.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

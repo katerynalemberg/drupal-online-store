@@ -1,0 +1,29 @@
+uuid: ae6e4c81-9224-47c4-b8e9-3a9783727465
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.online_course
+    - field.storage.paragraph.field_course
+    - paragraphs.paragraphs_type.activated_course
+id: paragraph.activated_course.field_course
+field_name: field_course
+entity_type: paragraph
+bundle: activated_course
+label: Course
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:commerce_product'
+  handler_settings:
+    target_bundles:
+      online_course: online_course
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

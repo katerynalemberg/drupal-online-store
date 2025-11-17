@@ -11,7 +11,6 @@ use Drupal\Core\Config\TypedConfigManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -124,11 +123,14 @@ final class CourseSettingsForm extends ConfigFormBase {
         'type' => 'activated_course',
         'field_course.target_id' => $product_id,
       ]);
+      $datetime = new \DateTime();
+      $datetime->setTimestamp($now + $timestamp);
 
       foreach ($results as $result) {
         if ($result instanceof Paragraph) {
-          $result->set('field_duration',
-            date('Y-m-d H:i:s', $now + $timestamp));
+          $result->set('field_duration', [
+            'value' => $datetime->format('Y-m-d\TH:i:s'),
+          ]);
           $result->save();
         }
       }
