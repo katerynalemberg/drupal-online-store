@@ -35,7 +35,8 @@
         "drupal/pathauto": "^1.14",
         "drupal/physical": "^1.5",
         "drupal/quiz": "^7.0",
-        "drupal/select2": "^2.0"
+        "drupal/select2": "^2.0",
+        "drupal/webform": "^6.2"
     },
     "conflict": {
         "drupal/drupal": "*"

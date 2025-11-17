@@ -1,0 +1,72 @@
+<?php
+
+/**
+ * @file
+ * Contains utils.module.
+ */
+
+use Drupal\Core\Access\AccessResult;
+use Drupal\webform\WebformSubmissionInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/**
+ * Implements hook_file_access().
+ *
+ * Redirect to form if user does not sign agreement to download book.
+ */
+function utils_file_access(
+  $file,
+  $op,
+  $account,
+) {
+  $product_id = \Drupal::entityQuery('commerce_product_variation')
+    ->condition('field_file.target_id', $file->id())
+    ->accessCheck(FALSE)
+    ->execute();
+
+  if ($op == 'download' &&
+      !empty($product_id)
+  ) {
+    $product_id = reset($product_id);
+
+    $query = \Drupal::service('webform_query');
+    $query->setWebform('download_book')
+      ->addCondition('product', $product_id)
+      ->addCondition('user', $account->id())
+      ->addCondition('eula', '1');
+    $result = $query->execute();
+
+    if (empty($result)) {
+      \Drupal::messenger()
+        ->addError(t('You must agree to the terms before downloading the book.'));
+      $token = \Drupal::service('uuid')->generate();
+      $store = \Drupal::service('tempstore.private')->get('utils');
+      $store->set($token, $product_id);
+      $response = new RedirectResponse("/∂token=$token");
+      $response->send();
+      exit;
+    }
+  }
+
+  return AccessResult::neutral();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave() for webform_submission entities.
+ */
+function utils_webform_submission_presave(
+  WebformSubmissionInterface $webform_submission,
+) {
+  $request = \Drupal::request();
+  $token = $request->query->get('token');
+  if ($webform_submission->getWebform()->id() === 'download_book' &&
+      $token
+  ) {
+    $store = \Drupal::service('tempstore.private')->get('utils');
+    $data = $webform_submission->getData();
+    $product_id = $store->get($token);
+    $data['product'] = $product_id;
+    $store->delete($token);
+    $webform_submission->setData($data);
+  }
+}
