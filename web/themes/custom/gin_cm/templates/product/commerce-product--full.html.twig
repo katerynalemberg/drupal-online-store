@@ -1,0 +1,7 @@
+{% if not is_purchased %}
+  {{ product|without('variation_field_file') }}
+{% else %}
+  {{ product }}
+{% endif %}
+
+

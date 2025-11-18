@@ -1,0 +1,17 @@
+uuid: 5521ada2-2cc5-497c-acff-6b22f2a13ecd
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_promotion
+title: 'Default cron handler'
+id: commerce_promotion_cron
+weight: 0
+module: commerce_promotion
+callback: 'commerce_promotion#cron'
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database

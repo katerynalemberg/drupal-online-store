@@ -9,20 +9,49 @@ dependencies:
     - image.style.thumbnail
   module:
     - commerce
+    - field_group
     - image
-    - path
     - text
+third_party_settings:
+  field_group:
+    group_tabs:
+      children:
+        - group_general
+      label: Tabs
+      region: content
+      parent_name: ''
+      weight: 1
+      format_type: tabs
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        direction: horizontal
+        width_breakpoint: 640
+    group_general:
+      children:
+        - title
+        - field_description
+        - field_image
+      label: General
+      region: content
+      parent_name: group_tabs
+      weight: 20
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        formatter: closed
+        description: ''
+        required_fields: true
 id: commerce_product.membership.default
 targetEntityType: commerce_product
 bundle: membership
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 10
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_description:
     type: text_textarea
     weight: 91
@@ -46,19 +75,6 @@ content:
     settings:
       include_locked: true
     third_party_settings: {  }
-  path:
-    type: path
-    weight: 30
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    weight: 90
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   stores:
     type: commerce_entity_select
     weight: -10
@@ -77,15 +93,9 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  uid:
-    type: entity_reference_autocomplete
-    weight: 5
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
 hidden:
+  created: true
+  path: true
+  status: true
+  uid: true
   variations: true

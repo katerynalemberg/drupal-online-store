@@ -1,0 +1,18 @@
+uuid: 52f37206-fa0f-483f-b1e1-090c052b7649
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.online_course
+id: commerce_product.online_course.created
+field_name: created
+entity_type: commerce_product
+bundle: online_course
+label: Created
+description: 'The time when the product was created.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

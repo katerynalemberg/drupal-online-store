@@ -1,10 +1,8 @@
-uuid: f20b0dca-9a48-47cf-bc3e-6b96298d23f9
-langcode: en-gb
 status: true
+id: commerce_order_unlock
 dependencies:
   module:
     - commerce_order
-id: commerce_order_unlock
 label: 'Unlock order'
 type: commerce_order
 plugin: commerce_order_unlock

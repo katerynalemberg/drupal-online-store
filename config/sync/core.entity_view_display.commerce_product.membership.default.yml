@@ -6,6 +6,7 @@ dependencies:
     - commerce_product.commerce_product_type.membership
     - field.field.commerce_product.membership.field_description
     - field.field.commerce_product.membership.field_image
+    - image.style.media_library
   module:
     - commerce_product
     - image
@@ -16,34 +17,27 @@ bundle: membership
 mode: default
 content:
   field_description:
-    type: text_default
-    label: above
-    settings: {  }
+    type: text_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
     third_party_settings: {  }
     weight: 1
     region: content
   field_image:
     type: image
-    label: above
+    label: hidden
     settings:
       image_link: ''
-      image_style: ''
+      image_style: media_library
       image_loading:
         attribute: lazy
     third_party_settings: {  }
     weight: 2
     region: content
-  title:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 0
-    region: content
   variations:
     type: commerce_add_to_cart
-    label: above
+    label: hidden
     settings:
       combine: true
     third_party_settings: {  }
@@ -51,6 +45,10 @@ content:
     region: content
 hidden:
   created: true
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
   langcode: true
   stores: true
+  title: true
   uid: true

@@ -1,0 +1,25 @@
+uuid: b209e100-8a73-4db7-bb06-5ecf34a3d342
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.online_course
+    - core.entity_view_mode.commerce_product_variation.store
+    - field.field.commerce_product_variation.online_course.field_member_price
+    - field.field.commerce_product_variation.online_course.field_tax_rate
+id: commerce_product_variation.online_course.store
+targetEntityType: commerce_product_variation
+bundle: online_course
+mode: store
+content: {  }
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  field_member_price: true
+  field_tax_rate: true
+  list_price: true
+  price: true
+  product_id: true
+  sku: true
+  title: true

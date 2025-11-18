@@ -1,0 +1,7 @@
+name: 'Student Manager'
+type: module
+description: 'Provides a custom entity to store, manage, and display detailed student.'
+package: Custom
+core_version_requirement: ^10 || ^11
+dependencies:
+  - utils:utils

@@ -1,0 +1,42 @@
+uuid: d57e57cb-d396-442e-8c34-4156079edc1b
+langcode: en
+status: true
+dependencies:
+  module:
+    - entity_reference_revisions
+    - student_manager
+    - user
+id: student.student.default
+targetEntityType: student
+bundle: student
+mode: default
+content:
+  duration_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  user:
+    type: author
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  user_courses:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true

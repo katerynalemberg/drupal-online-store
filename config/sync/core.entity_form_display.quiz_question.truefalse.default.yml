@@ -1,0 +1,56 @@
+uuid: 30693126-3dbf-4879-a82f-ad816e9d615d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.quiz_question.truefalse.truefalse_correct
+    - quiz.question.type.truefalse
+  module:
+    - text
+  enforced:
+    module:
+      - quiz_truefalse
+_core:
+  default_config_hash: W0P0DcmlpAPR-S7opHNYU_ceU0tq20tz0EFSVi_czpI
+id: quiz_question.truefalse.default
+targetEntityType: quiz_question
+bundle: truefalse
+mode: default
+content:
+  body:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  correct_answer:
+    type: options_buttons
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  feedback:
+    type: text_textarea
+    weight: 26
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  truefalse_correct:
+    type: options_buttons
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

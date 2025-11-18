@@ -1,0 +1,66 @@
+uuid: 9c668ce0-6ee1-4b3e-8d71-d9d212a8bd82
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.activated_course.field_course
+    - field.field.paragraph.activated_course.field_duration
+    - field.field.paragraph.activated_course.field_user
+    - paragraphs.paragraphs_type.activated_course
+  module:
+    - datetime
+    - field_group
+    - select2
+third_party_settings:
+  field_group:
+    group_duration:
+      children:
+        - field_day
+        - field_minute
+        - field_hour
+      label: Duration
+      region: content
+      parent_name: ''
+      weight: 1
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        description: ''
+        required_fields: true
+id: paragraph.activated_course.default
+targetEntityType: paragraph
+bundle: activated_course
+mode: default
+content:
+  field_course:
+    type: select2_entity_reference
+    weight: 0
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_duration:
+    type: datetime_default
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_user:
+    type: entity_reference_autocomplete
+    weight: 3
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

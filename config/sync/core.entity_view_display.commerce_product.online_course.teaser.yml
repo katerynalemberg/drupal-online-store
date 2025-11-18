@@ -1,0 +1,66 @@
+uuid: 0fc78223-aa91-4b42-a9c1-d0d506cfacd8
+langcode: en-gb
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.online_course
+    - core.entity_view_mode.commerce_product.teaser
+    - field.field.commerce_product.online_course.field_area
+    - field.field.commerce_product.online_course.field_certificate_description
+    - field.field.commerce_product.online_course.field_certificate_title
+    - field.field.commerce_product.online_course.field_description
+    - field.field.commerce_product.online_course.field_image
+    - field.field.commerce_product.online_course.field_quiz
+    - field.field.commerce_product.online_course.field_supplemental_files
+    - field.field.commerce_product.online_course.field_tag
+    - image.style.medium
+  module:
+    - entity_print
+    - image
+third_party_settings:
+  entity_print:
+    pdf_label: 'Download certificate'
+id: commerce_product.online_course.teaser
+targetEntityType: commerce_product
+bundle: online_course
+mode: teaser
+content:
+  field_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  flag_activate_course:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  field_area: true
+  field_certificate_description: true
+  field_certificate_title: true
+  field_description: true
+  field_quiz: true
+  field_supplemental_files: true
+  field_tag: true
+  stores: true
+  uid: true
+  variations: true

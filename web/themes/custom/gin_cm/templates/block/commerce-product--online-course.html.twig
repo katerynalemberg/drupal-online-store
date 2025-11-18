@@ -1,0 +1,12 @@
+{% set quiz_link = quiz_link ?? '' %}
+{% set supplements = product.field_supplemental_files['#object'] ?? [] %}
+
+{% include "gin_cm:product_online_course" with {
+  product: product,
+  quiz_link: quiz_link,
+  supplements: supplements,
+  view_mode: elements['#view_mode']
+}
+%}
+
+

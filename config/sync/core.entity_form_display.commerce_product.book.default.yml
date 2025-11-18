@@ -8,26 +8,105 @@ dependencies:
     - field.field.commerce_product.book.field_category
     - field.field.commerce_product.book.field_description
     - field.field.commerce_product.book.field_image
-    - field.field.commerce_product.book.field_member_price
     - field.field.commerce_product.book.field_pages
     - image.style.thumbnail
   module:
     - commerce
-    - commerce_price
+    - field_group
     - image
-    - path
     - text
+third_party_settings:
+  field_group:
+    group_tabs:
+      children:
+        - group_general
+        - group_details
+        - group_media
+        - group_pricing
+      label: Tabs
+      region: content
+      parent_name: ''
+      weight: 1
+      format_type: tabs
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        direction: horizontal
+        width_breakpoint: 640
+    group_general:
+      children:
+        - title
+        - field_description
+        - field_category
+      label: General
+      region: content
+      parent_name: group_tabs
+      weight: 2
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        formatter: closed
+        description: ''
+        required_fields: false
+    group_details:
+      children:
+        - field_author
+        - field_pages
+      label: Details
+      region: content
+      parent_name: group_tabs
+      weight: 3
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        formatter: closed
+        description: ''
+        required_fields: false
+    group_media:
+      children:
+        - field_image
+      label: Media
+      region: content
+      parent_name: group_tabs
+      weight: 4
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_pricing:
+      children:
+        - field_member_price
+      label: Pricing
+      region: content
+      parent_name: group_tabs
+      weight: 5
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        formatter: closed
+        description: ''
+        required_fields: false
 id: commerce_product.book.default
 targetEntityType: commerce_product
 bundle: book
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 10
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_author:
     type: string_textfield
     weight: 96
@@ -62,12 +141,6 @@ content:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
-  field_member_price:
-    type: commerce_price_default
-    weight: 95
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_pages:
     type: number
     weight: 98
@@ -82,22 +155,9 @@ content:
     settings:
       include_locked: true
     third_party_settings: {  }
-  path:
-    type: path
-    weight: 30
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    weight: 90
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   stores:
     type: commerce_entity_select
-    weight: -10
+    weight: 0
     region: content
     settings:
       hide_single_entity: true
@@ -113,15 +173,9 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  uid:
-    type: entity_reference_autocomplete
-    weight: 5
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
 hidden:
+  created: true
+  path: true
+  status: true
+  uid: true
   variations: true

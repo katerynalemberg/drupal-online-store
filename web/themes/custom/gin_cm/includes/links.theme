@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * links.theme
+ */
+
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Add 'user_courses' link to view purchased courses.
+ */
+function gin_cm_preprocess_links__toolbar_user(&$variables) {
+  $variables['links']['user_courses'] = [
+    'link' => [
+      '#url' => Url::fromRoute('user.logout'),
+      '#title' => t('My Courses'),
+    ],
+  ];
+}

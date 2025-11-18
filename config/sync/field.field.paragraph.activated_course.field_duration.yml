@@ -1,0 +1,21 @@
+uuid: a4eeae1f-320a-44ef-a49d-a98404e91d71
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_duration
+    - paragraphs.paragraphs_type.activated_course
+  module:
+    - datetime
+id: paragraph.activated_course.field_duration
+field_name: field_duration
+entity_type: paragraph
+bundle: activated_course
+label: Duration
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

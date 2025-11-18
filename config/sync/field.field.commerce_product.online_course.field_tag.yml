@@ -5,7 +5,7 @@ dependencies:
   config:
     - commerce_product.commerce_product_type.online_course
     - field.storage.commerce_product.field_tag
-    - taxonomy.vocabulary.category
+    - taxonomy.vocabulary.tags
 id: commerce_product.online_course.field_tag
 field_name: field_tag
 entity_type: commerce_product
@@ -20,10 +20,10 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      course_type: course_type
+      tags: tags
     sort:
       field: name
       direction: asc
-    auto_create: false
+    auto_create: true
     auto_create_bundle: ''
 field_type: entity_reference

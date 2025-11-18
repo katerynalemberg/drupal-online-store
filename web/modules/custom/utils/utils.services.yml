@@ -1,6 +1,22 @@
 services:
+  utils.product_purchase_checker:
+    class: Drupal\utils\Services\ProductPurchaseChecker
+    arguments:
+      - '@entity_type.manager'
+      - '@current_user'
+      - '@current_route_match'
+      - '@datetime.time'
+
   utils.price_resolver:
     class: Drupal\utils\Resolver\PriceResolver
-    arguments: [ '@entity_type.manager', '@current_user' ]
+    arguments:
+      - '@entity_type.manager'
+      - '@current_user'
     tags:
       - { name: commerce_price.price_resolver, priority: 200 }
+
+  utils.quiz_helper:
+    class: Drupal\utils\Services\QuizHelper
+    arguments:
+      - '@entity_type.manager'
+      - '@current_user'

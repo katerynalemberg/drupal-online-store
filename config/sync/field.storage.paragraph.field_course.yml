@@ -1,0 +1,20 @@
+uuid: 75aba43e-bdc5-4288-a3bc-95da48d0f117
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - paragraphs
+id: paragraph.field_course
+field_name: field_course
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: commerce_product
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

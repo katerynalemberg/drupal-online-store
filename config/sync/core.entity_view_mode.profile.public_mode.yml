@@ -1,0 +1,11 @@
+uuid: f4fae6e1-3dfb-4873-9419-f65c6d01904b
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+id: profile.public_mode
+label: 'Public mode'
+description: ''
+targetEntityType: profile
+cache: true

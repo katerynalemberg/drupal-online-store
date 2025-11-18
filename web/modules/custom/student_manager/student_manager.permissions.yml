@@ -1,0 +1,3 @@
+administer student:
+  title: 'Administer students'
+  restrict access: true

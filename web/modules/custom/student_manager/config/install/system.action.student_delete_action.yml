@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - student_manager
+id: student_delete_action
+label: 'Delete students'
+type: student
+plugin: entity:delete_action:student
+configuration: {  }

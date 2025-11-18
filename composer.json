@@ -35,7 +35,9 @@
         "drupal/pathauto": "^1.14",
         "drupal/physical": "^1.5",
         "drupal/quiz": "^7.0",
-        "drupal/select2": "^2.0"
+        "drupal/select2": "^2.0",
+        "drupal/ultimate_cron": "^2.0@beta",
+        "drupal/webform": "^6.2"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -55,6 +57,14 @@
             "tbachert/spi": true
         },
         "sort-packages": true
+    },
+    "scripts": {
+        "build": [
+            "composer install",
+            "drush cr",
+            "drush updb -y",
+            "drush cim -y"
+        ]
     },
     "extra": {
         "drupal-scaffold": {

@@ -1,0 +1,10 @@
+services:
+  student_manager.event_subscriber:
+    class: Drupal\student_manager\EventSubscriber\StudentSubscriber
+    arguments:
+      - '@entity_type.manager'
+      - '@current_user'
+      - '@datetime.time'
+      - '@config.factory'
+    tags:
+      - { name: event_subscriber }

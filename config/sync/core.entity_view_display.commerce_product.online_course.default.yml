@@ -9,73 +9,57 @@ dependencies:
     - field.field.commerce_product.online_course.field_certificate_title
     - field.field.commerce_product.online_course.field_description
     - field.field.commerce_product.online_course.field_image
-    - field.field.commerce_product.online_course.field_member_price
     - field.field.commerce_product.online_course.field_quiz
     - field.field.commerce_product.online_course.field_supplemental_files
     - field.field.commerce_product.online_course.field_tag
+    - image.style.media_library
   module:
-    - commerce_price
     - commerce_product
+    - entity_print
     - image
     - options
     - text
+third_party_settings:
+  entity_print:
+    pdf_label: 'Download certificate'
 id: commerce_product.online_course.default
 targetEntityType: commerce_product
 bundle: online_course
 mode: default
 content:
+  entity_print_view_pdf:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   field_area:
     type: list_default
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     weight: 2
     region: content
-  field_certificate_description:
-    type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 7
-    region: content
-  field_certificate_title:
-    type: string
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 6
-    region: content
   field_description:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
   field_image:
     type: image
-    label: above
+    label: hidden
     settings:
       image_link: ''
-      image_style: ''
+      image_style: media_library
       image_loading:
         attribute: lazy
     third_party_settings: {  }
-    weight: 4
-    region: content
-  field_member_price:
-    type: commerce_price_default
-    label: above
-    settings:
-      strip_trailing_zeroes: false
-      currency_display: symbol
-    third_party_settings: {  }
-    weight: 5
+    weight: 1
     region: content
   field_quiz:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
@@ -83,7 +67,7 @@ content:
     region: content
   field_supplemental_files:
     type: entity_reference_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: false
@@ -92,11 +76,16 @@ content:
     region: content
   field_tag:
     type: entity_reference_label
-    label: above
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
     weight: 3
+    region: content
+  flag_activate_course:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
     region: content
   title:
     type: string
@@ -108,7 +97,7 @@ content:
     region: content
   variations:
     type: commerce_add_to_cart
-    label: above
+    label: hidden
     settings:
       combine: true
     third_party_settings: {  }
@@ -116,6 +105,10 @@ content:
     region: content
 hidden:
   created: true
+  entity_print_view_epub: true
+  entity_print_view_word_docx: true
+  field_certificate_description: true
+  field_certificate_title: true
   langcode: true
   stores: true
   uid: true

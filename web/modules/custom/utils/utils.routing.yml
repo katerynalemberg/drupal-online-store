@@ -1,0 +1,11 @@
+utils.course_settings:
+  path: '/product/{commerce_product}/config'
+  defaults:
+    _title: 'Course settings'
+    _form: 'Drupal\utils\Form\CourseSettingsForm'
+  requirements:
+    _custom_access: 'Drupal\utils\Access\ProductAccessCheck::access'
+  options:
+    parameters:
+      commerce_product:
+        type: entity:commerce_product

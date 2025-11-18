@@ -1,0 +1,15 @@
+uuid: 834a4e67-eb2f-4c81-8140-31473d7d3611
+langcode: en
+status: true
+dependencies:
+  config:
+    - flag.flag.activate_course
+  module:
+    - flag
+id: flag_action.activate_course_flag
+label: Activate
+type: commerce_product
+plugin: 'flag_action:activate_course_flag'
+configuration:
+  flag_id: activate_course
+  flag_action: flag

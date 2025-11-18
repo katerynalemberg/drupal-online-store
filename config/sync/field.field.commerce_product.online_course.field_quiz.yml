@@ -12,7 +12,7 @@ entity_type: commerce_product
 bundle: online_course
 label: Quiz
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

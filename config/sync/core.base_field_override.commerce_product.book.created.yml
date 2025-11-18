@@ -1,0 +1,18 @@
+uuid: e80dfeee-20e7-4328-b1a5-3bbc9cb5a95c
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.book
+id: commerce_product.book.created
+field_name: created
+entity_type: commerce_product
+bundle: book
+label: Created
+description: 'The time when the product was created.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

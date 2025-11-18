@@ -1,0 +1,64 @@
+uuid: 259b3649-a4bd-4b79-aa83-15b9f090e94c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.activated_course.field_course
+    - field.field.paragraph.activated_course.field_duration
+    - field.field.paragraph.activated_course.field_user
+    - paragraphs.paragraphs_type.activated_course
+  module:
+    - datetime
+    - field_group
+third_party_settings:
+  field_group:
+    group_duration:
+      children:
+        - field_day
+        - field_minute
+        - field_hour
+      label: Duration
+      parent_name: ''
+      region: content
+      weight: 20
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        description: ''
+id: paragraph.activated_course.default
+targetEntityType: paragraph
+bundle: activated_course
+mode: default
+content:
+  field_course:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_duration:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 21
+    region: content
+  field_user:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 22
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true

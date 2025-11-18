@@ -4,41 +4,58 @@ status: true
 dependencies:
   config:
     - filter.format.basic_html
+    - filter.format.webform_default
   module:
-    - comment
     - commerce_checkout
     - commerce_order
     - commerce_payment
     - commerce_product
     - contact
+    - entity_print
     - file
     - filter
+    - flag
     - media
+    - profile
     - quiz
     - search
     - shortcut
     - system
+    - toolbar
 _core:
   default_config_hash: cFrlqjtkTfvY3RGccjJkPf1SGIfJ942IrxTLWAO4mgA
 id: authenticated
-label: 'Authenticated user'
+label: 'Angemeldeter Benutzer'
 weight: 1
 is_admin: false
 permissions:
   - 'access checkout'
-  - 'access comments'
   - 'access content'
+  - 'access profile overview'
   - 'access quiz'
   - 'access shortcuts'
   - 'access site-wide contact form'
+  - 'access toolbar'
+  - 'access user profiles'
+  - 'bypass entity print access'
+  - 'create customer profile'
+  - 'delete own customer profile'
   - 'delete own files'
+  - 'flag activate_course'
   - 'manage own commerce_payment_method'
-  - 'post comments'
   - 'search content'
-  - 'skip comment approval'
+  - 'unflag activate_course'
+  - 'update own customer profile'
   - 'use text format basic_html'
+  - 'use text format webform_default'
+  - 'view any customer profile'
+  - 'view any profile'
   - 'view any quiz'
   - 'view commerce_product'
   - 'view media'
   - 'view own commerce_order'
+  - 'view own customer profile'
+  - 'view own profile'
   - 'view own quiz_result'
+  - 'view own unpublished profile'
+  - 'view the administration theme'

@@ -1,0 +1,22 @@
+uuid: 3aab575a-7def-4577-bf9f-9911d3730817
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.book
+id: commerce_product.book.status
+field_name: status
+entity_type: commerce_product
+bundle: book
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

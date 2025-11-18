@@ -23,6 +23,9 @@ content:
     region: content
 hidden:
   amount: true
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
   items: true
   original_amount: true
   package_type: true

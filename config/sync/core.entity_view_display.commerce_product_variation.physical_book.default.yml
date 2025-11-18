@@ -6,11 +6,12 @@ dependencies:
     - commerce_product.commerce_product_variation_type.physical_book
     - field.field.commerce_product_variation.physical_book.dimensions
     - field.field.commerce_product_variation.physical_book.field_isbn
+    - field.field.commerce_product_variation.physical_book.field_member_price
     - field.field.commerce_product_variation.physical_book.field_tax_rate
     - field.field.commerce_product_variation.physical_book.weight
   module:
-    - commerce_order
     - commerce_price
+    - commerce_product_tax
 id: commerce_product_variation.physical_book.default
 targetEntityType: commerce_product_variation
 bundle: physical_book
@@ -18,47 +19,44 @@ mode: default
 content:
   field_isbn:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
+    weight: 6
     region: content
-  field_tax_rate:
-    type: string
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 2
-    region: content
-  list_price:
-    type: commerce_price_calculated
-    label: above
+  field_member_price:
+    type: commerce_price_default
+    label: inline
     settings:
       strip_trailing_zeroes: false
       currency_display: symbol
-      adjustment_types:
-        tax: tax
-        fee: '0'
-        promotion: '0'
-        shipping: '0'
-        shipping_promotion: '0'
     third_party_settings: {  }
-    weight: -1
+    weight: 6
+    region: content
+  field_tax_rate:
+    type: commerce_product_tax_rate_percentage
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
     region: content
   price:
     type: commerce_price_default
-    label: above
+    label: inline
     settings:
       strip_trailing_zeroes: false
       currency_display: symbol
     third_party_settings: {  }
-    weight: 0
+    weight: 6
     region: content
 hidden:
   dimensions: true
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
   langcode: true
+  list_price: true
   product_id: true
   sku: true
   title: true

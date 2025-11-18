@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * theme.theme
+ */
+
+/**
+ * Implements hook_theme().
+ *
+ * Modifying certificate template.
+ */
+function gin_cm_theme(
+  array $existing,
+  string $type,
+  string $theme,
+  string $path,
+) {
+  return [
+    'entity_print' => [
+      'path' => $path . '/templates/view/',
+      'template' => 'entity-print',
+      'variables' => [
+        'title' => '',
+        'certificate_title' => '',
+        'certificate_description' => '',
+        'image' => NULL,
+        'entity_print_css' => NULL,
+        'user_name' => '',
+        'date' => '',
+      ],
+    ],
+  ];
+}

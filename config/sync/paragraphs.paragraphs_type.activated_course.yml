@@ -1,0 +1,10 @@
+uuid: e2830dd7-0c16-4c8a-92c2-c055abeaf10e
+langcode: en
+status: true
+dependencies: {  }
+id: activated_course
+label: 'Activated course'
+icon_uuid: null
+icon_default: null
+description: 'The reference to an activated course with a duration.'
+behavior_plugins: {  }

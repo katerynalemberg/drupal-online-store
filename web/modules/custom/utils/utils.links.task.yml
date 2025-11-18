@@ -1,0 +1,11 @@
+utils.product_config_tab:
+  route_name: utils.course_settings
+  base_route: entity.commerce_product.canonical
+  title: Config Form
+  weight: 100
+
+utils.user.purchased_courses:
+  route_name: view.purchased_courses.purchased_courses
+  base_route: entity.user.canonical
+  title: 'My courses'
+  weight: -10
