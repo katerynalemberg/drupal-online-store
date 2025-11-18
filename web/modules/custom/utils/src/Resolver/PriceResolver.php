@@ -4,6 +4,7 @@ namespace Drupal\utils\Resolver;
 
 use Drupal\commerce\Context;
 use Drupal\commerce\PurchasableEntityInterface;
+use Drupal\commerce_order\Entity\Order;
 use Drupal\commerce_price\Resolver\PriceResolverInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Session\AccountInterface;
@@ -32,9 +33,11 @@ class PriceResolver implements PriceResolverInterface {
         ->loadByProperties(['uid' => $user->id(), 'state' => 'completed']);
 
       foreach ($orders as $order) {
-        foreach ($order->toArray() as $order_item) {
-          if ($this->isMembershipProduct($order_item)) {
-            return $entity->getPrice()->multiply('0.90');
+        if ($order instanceof Order) {
+          foreach ($order->getItems() as $order_item) {
+            if ($this->isMembershipProduct($order_item)) {
+              return $entity->getPrice()->multiply('0.90');
+            }
           }
         }
       }

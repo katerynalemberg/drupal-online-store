@@ -117,7 +117,7 @@ final class StudentSubscriber implements EventSubscriberInterface {
    * Creates reference to a student.
    */
   private function getStudent(
-    Paragraph $course,
+    EntityInterface $course,
   ): void {
     $student_storage = $this->entityTypeManager
       ->getStorage('student');
@@ -127,7 +127,9 @@ final class StudentSubscriber implements EventSubscriberInterface {
     $student = reset($student);
 
     // If student has already purchased course.
-    if ($student instanceof Student) {
+    if ($student instanceof Student &&
+        $course instanceof Paragraph
+    ) {
       $existing_courses = $student->get('user_courses')
         ->referencedEntities();
       $exists = FALSE;

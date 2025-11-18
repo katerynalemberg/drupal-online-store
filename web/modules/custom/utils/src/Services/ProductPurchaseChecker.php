@@ -87,10 +87,9 @@ final class ProductPurchaseChecker {
     if ($activated_course instanceof ProductInterface) {
       $duration = strtotime($activated_course->get('field_duration')->value);
     }
-    $variation_storage = $this->entityTypeManager
-      ->getStorage('commerce_product_variation');
-    $variation = reset($variation_storage);
-    $variation = $variation->loadFromContext($product);
+    $variation_storage = $this->entityTypeManager->getStorage('commerce_product_variation');
+    $variations = $variation_storage->loadByProperties(['product_id' => $product->id()]);
+    $variation = reset($variations);
 
     if (!($variation instanceof ProductVariationInterface)) {
       return FALSE;
