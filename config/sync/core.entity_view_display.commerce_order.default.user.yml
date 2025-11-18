@@ -62,6 +62,11 @@ content:
     third_party_settings: {  }
     weight: 7
     region: content
+  entity_print_view_pdf:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
   mail:
     type: basic_string
     label: inline
@@ -110,6 +115,8 @@ content:
     region: content
 hidden:
   changed: true
+  entity_print_view_epub: true
+  entity_print_view_word_docx: true
   ip_address: true
   shipments: true
   store_id: true

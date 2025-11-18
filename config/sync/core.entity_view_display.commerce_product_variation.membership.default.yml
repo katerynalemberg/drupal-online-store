@@ -22,7 +22,7 @@ content:
     region: content
   price:
     type: commerce_price_default
-    label: above
+    label: inline
     settings:
       strip_trailing_zeroes: false
       currency_display: symbol
@@ -31,21 +31,17 @@ content:
     region: content
   sku:
     type: string
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
-    region: content
-  title:
-    type: string
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 0
+    weight: 2
     region: content
 hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
   langcode: true
   list_price: true
   product_id: true
+  title: true

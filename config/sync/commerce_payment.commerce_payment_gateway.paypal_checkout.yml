@@ -20,7 +20,7 @@ configuration:
   intent: capture
   disable_funding: {  }
   disable_card: {  }
-  shipping_preference: set_provided_address
+  shipping_preference: no_shipping
   update_billing_profile: false
   update_shipping_profile: false
   style: {  }

@@ -6,12 +6,85 @@ dependencies:
     - commerce_product.commerce_product_variation_type.physical_book
     - field.field.commerce_product_variation.physical_book.dimensions
     - field.field.commerce_product_variation.physical_book.field_isbn
+    - field.field.commerce_product_variation.physical_book.field_member_price
     - field.field.commerce_product_variation.physical_book.field_tax_rate
     - field.field.commerce_product_variation.physical_book.weight
   module:
     - commerce_price
     - commerce_product_tax
+    - field_group
     - physical
+third_party_settings:
+  field_group:
+    group_tabs:
+      children:
+        - group_general
+        - group_pricing
+        - group_details
+      label: Tabs
+      region: content
+      parent_name: ''
+      weight: 20
+      format_type: tabs
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        direction: horizontal
+        width_breakpoint: 640
+    group_general:
+      children:
+        - title
+        - sku
+        - field_isbn
+      label: General
+      region: content
+      parent_name: group_tabs
+      weight: 20
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_pricing:
+      children:
+        - price
+        - field_tax_rate
+      label: Pricing
+      region: content
+      parent_name: group_tabs
+      weight: 20
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        formatter: closed
+        description: ''
+        required_fields: true
+    group_details:
+      children:
+        - dimensions
+        - weight
+      label: Details
+      region: content
+      parent_name: group_tabs
+      weight: 20
+      format_type: tab
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        formatter: closed
+        description: ''
+        required_fields: true
 id: commerce_product_variation.physical_book.default
 targetEntityType: commerce_product_variation
 bundle: physical_book
@@ -34,6 +107,12 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_member_price:
+    type: commerce_price_default
+    weight: 93
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_tax_rate:
     type: commerce_tax_rate_default
     weight: 92
@@ -46,12 +125,6 @@ content:
     region: content
     settings:
       include_locked: true
-    third_party_settings: {  }
-  list_price:
-    type: commerce_list_price
-    weight: -1
-    region: content
-    settings: {  }
     third_party_settings: {  }
   price:
     type: commerce_price_default
@@ -66,13 +139,6 @@ content:
     settings:
       size: 60
       placeholder: ''
-    third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    weight: 90
-    region: content
-    settings:
-      display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield
@@ -93,4 +159,6 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  list_price: true
+  status: true
   uid: true

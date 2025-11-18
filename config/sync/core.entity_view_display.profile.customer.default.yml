@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.profile.customer.address
+    - field.field.profile.customer.tax_number
     - profile.type.customer
   module:
     - address
@@ -28,3 +29,4 @@ hidden:
   entity_print_view_epub: true
   entity_print_view_pdf: true
   entity_print_view_word_docx: true
+  tax_number: true

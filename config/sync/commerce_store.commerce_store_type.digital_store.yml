@@ -1,9 +1,0 @@
-uuid: c50552d1-7602-4720-9985-c818d8eb2128
-langcode: en
-status: true
-dependencies: {  }
-id: digital_store
-label: 'Digital Store'
-traits: {  }
-locked: false
-description: 'A store for selling digital products like eBooks and online courses. This text will be displayed on the Add store page.'
