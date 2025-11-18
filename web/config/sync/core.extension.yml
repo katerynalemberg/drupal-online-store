@@ -82,6 +82,7 @@ module:
   token: 0
   toolbar: 0
   typed_data: 0
+  ultimate_cron: 0
   update: 0
   user: 0
   utils: 0

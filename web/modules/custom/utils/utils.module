@@ -5,10 +5,51 @@
  * Contains utils.module.
  */
 
+use Drupal\commerce_product\Entity\Product;
 use Drupal\Core\Access\AccessResult;
+use Drupal\flag\Entity\Flag;
+use Drupal\flag\FlagInterface;
+use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\user\Entity\User;
 use Drupal\user\UserInterface;
 use Drupal\webform\WebformSubmissionInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/**
+ * Implements hook_cron().
+ *
+ * Deactivates all purchased courses when time is up.
+ */
+function utils_cron() {
+  $storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+  $results = $storage->loadByProperties([
+    'type' => 'activated_course',
+  ]);
+  foreach ($results as $result) {
+    if (!($result instanceof Paragraph)) {
+      return;
+    }
+    $duration = strtotime($result->get('field_duration')->value);
+    $now = \Drupal::time()->getCurrentTime();
+
+    if ($duration &&
+        $duration <= $now
+    ) {
+      $product_id = $result->get('field_course')->target_id;
+      $product = Product::load($product_id);
+      $flag = Flag::load('activate_course');
+      $flag_service = \Drupal::service('flag');
+      $current_user = User::load($result->get('field_user')->target_id);
+
+      if ($flag instanceof FlagInterface &&
+        !$current_user->isAnonymous() &&
+        $flag->isFlagged($product, $current_user)
+      ) {
+        $flag_service->unflag($flag, $product, $current_user);
+      }
+    }
+  }
+}
 
 /**
  * Custom callback to access 'view.purchased_courses.purchased_courses'.
