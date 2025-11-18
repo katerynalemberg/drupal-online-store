@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @file
+ * Contains student_manager.module.
+ */
+
+declare(strict_types=1);
+
+/**
+ * @file
+ * Provides a student entity type.
+ */
+
+use Drupal\Core\Render\Element;
+
+/**
+ * Implements hook_theme().
+ */
+function student_manager_theme(): array {
+  return [
+    'student' => ['render element' => 'elements'],
+  ];
+}
+
+/**
+ * Prepares variables for student templates.
+ *
+ * Default template: student.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the student information and any
+ *     fields attached to the entity.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_student(array &$variables): void {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}
